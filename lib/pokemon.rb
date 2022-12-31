@@ -1,11 +1,11 @@
 require "scraper.rb"
 require 'pry'
 
-class Pokemon < Scraper
+class Pokemon 
 
   attr_accessor :id, :name, :type, :db
 
-  def self.initialize (id=nil, name, type, db)
+  def initialize (id:, name:, type:, db:)
     @id = id
     @name = name
     @type = type
@@ -29,9 +29,7 @@ class Pokemon < Scraper
     SQL
 
     result = db.execute(sql, [id])[0]
-    Pokemon.new(result[0], result[1], result[2])
-    # new_pokemon = Pokemon.new(pokemon_data[0], pokemon_data[1], pokemon_data[2])
-    # new_pokemon
+    Pokemon.new(id: result[0], name: result[1], type: result[2], db: db)
     # binding.pry
   end
 
